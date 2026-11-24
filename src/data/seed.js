@@ -21,13 +21,13 @@ export const SEED_PRODUCTS = [
     is_new: false, active: true, created_at: at(2), variants: v('p02', { S: 2, M: 3, L: 2, XL: 1 }),
   },
   {
-    id: 'p03', name: 'NIKE TECH FLEECE HOODIE', category: 'fleece', price: 3900, art: 'hoodie', color: '#4a4a48', bg: '#1d1d1d',
+    id: 'p03', name: 'NIKE TECH FLEECE HOODIE', category: 'fleece', price: 3900, art: 'hoodie', color: '#b8b8b5', bg: '#ffffff', image_url: '/products/nike-tech-fleece-hoodie.jpg',
     description: 'Худи на молнии из Tech Fleece: тёплое и лёгкое, держит форму. Карман на рукаве и капюшон по фигуре.',
     details: 'Хлопок с полиэстером, плотный трикотаж. Стирка при 30°.',
     is_new: true, active: true, created_at: at(3), variants: v('p03', { S: 2, M: 4, L: 3, XL: 1 }),
   },
   {
-    id: 'p04', name: 'NIKE TECH FLEECE JOGGERS', category: 'pants', price: 3200, art: 'joggers', color: '#4a4a48', bg: '#c8ff00',
+    id: 'p04', name: 'NIKE TECH FLEECE JOGGERS', category: 'pants', price: 3200, art: 'joggers', color: '#b8b8b5', bg: '#c8ff00',
     description: 'Джоггеры в комплект к худи: зауженный низ, карман на молнии сбоку, мягкий пояс.',
     details: 'Хлопок с полиэстером. Стирка при 30°.',
     is_new: false, active: true, created_at: at(4), variants: v('p04', { S: 1, M: 3, L: 2, XL: 0 }),

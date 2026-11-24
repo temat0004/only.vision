@@ -63,7 +63,7 @@ export default function Catalog() {
 
       {error && <div className="alert">Не удалось загрузить каталог: {error}</div>}
 
-      <div className="grid">
+      <div className="product-grid">
         {products === null ? (
           Array.from({ length: 8 }, (_, i) => <div key={i} className="card skeleton" />)
         ) : (

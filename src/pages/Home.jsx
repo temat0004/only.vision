@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom'
 import { motion, useScroll, useTransform } from 'motion/react'
 import FlashlightTextReveal from '@/components/ui/flashlight-text-reveal'
 import { ParallaxComponent } from '@/components/ui/parallax-scrolling'
+import ClothingRailHero from '@/components/ui/product-rail-gallery'
 import { api } from '../lib/api'
-import { CATEGORIES, DELIVERY, formatPrice } from '../lib/config'
+import { CATEGORIES, DELIVERY, formatPrice, sortVariants } from '../lib/config'
 import ProductCard from '../components/ProductCard'
 import { Marquee, Page, Reveal, Sticker, ease } from '../components/ui'
 
@@ -66,6 +67,45 @@ function Manifest() {
   )
 }
 
+// Вешалка (компонент с 21st.dev): верх и куртки из каталога в виде вещей на вешалках.
+// Наши силуэты → типы вешалки; штаны и аксессуары на вешалку не вешаем.
+const RAIL_KIND = { puffer: 'jacket', bomber: 'jacket', hoodie: 'hoodie', crewneck: 'knit', polo: 'tee', tee: 'tee', longsleeve: 'knit' }
+const RAIL_LABELS = { front: 'Спереди', back: 'Сзади', close: 'Закрыть', show: 'Показать' }
+
+function Rail({ products }) {
+  const items = products
+    .filter((p) => RAIL_KIND[p.art])
+    .slice(0, 8)
+    .map((p) => {
+      const inStock = sortVariants(p.variants).filter((v) => v.stock > 0).map((v) => v.size)
+      return {
+        id: p.id,
+        name: p.name,
+        kind: RAIL_KIND[p.art],
+        color: p.color,
+        tag: formatPrice(p.price),
+        description: p.description,
+        details: inStock.length ? [`В наличии: ${inStock.join(', ')}`] : ['Нет в наличии'],
+      }
+    })
+  if (items.length < 2) return null
+  return (
+    <section className="rail-section">
+      <div className="section-head">
+        <Reveal as="h2" className="h2">Вешалка</Reveal>
+        <span className="eyebrow">Наведи · потяни · нажми, чтобы снять</span>
+      </div>
+      <ClothingRailHero
+        items={items}
+        hanger="wood"
+        labels={RAIL_LABELS}
+        caption="Наведи на вещь, чтобы повернуть её лицом. Нажми, чтобы снять с вешалки и посмотреть со спины."
+        action={<Link to="/catalog" className="btn btn-light">Весь каталог →</Link>}
+      />
+    </section>
+  )
+}
+
 export default function Home() {
   const [products, setProducts] = useState(null)
   useEffect(() => { api.listProducts().then(setProducts).catch(() => setProducts([])) }, [])
@@ -88,7 +128,7 @@ export default function Home() {
           <Reveal as="h2" className="h2">Новинки</Reveal>
           <Link to="/catalog" className="link-arrow">Весь каталог →</Link>
         </div>
-        <div className="grid">
+        <div className="product-grid">
           {products === null
             ? Array.from({ length: 4 }, (_, i) => <div key={i} className="card skeleton" />)
             : drop.map((p, i) => <ProductCard key={p.id} product={p} index={i} />)}
@@ -96,6 +136,8 @@ export default function Home() {
       </section>
 
       <Manifest />
+
+      {products && <Rail products={products} />}
 
       <ParallaxComponent title="ALA-TOO" eyebrow="Бишкек · 42.87°N 74.59°E">
         <Reveal className="parallax__copy">

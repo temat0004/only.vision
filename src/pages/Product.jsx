@@ -199,7 +199,7 @@ export default function Product() {
       {more.length > 0 && (
         <section className="section">
           <h2 className="h2">С этим носят</h2>
-          <div className="grid">{more.map((p, i) => <ProductCard key={p.id} product={p} index={i} />)}</div>
+          <div className="product-grid">{more.map((p, i) => <ProductCard key={p.id} product={p} index={i} />)}</div>
         </section>
       )}
     </Page>

@@ -26,6 +26,6 @@ Import из GitHub → Framework: Vite → в Environment Variables добави
 
 ## Структура
 - `src/pages`: главная, каталог, товар, оформление, отслеживание, админка
-- `src/components/ui`: общие компоненты и компоненты из 21st.dev (`flashlight-text-reveal.tsx`, `parallax-scrolling.tsx`)
+- `src/components/ui`: общие компоненты и компоненты из 21st.dev (`flashlight-text-reveal.tsx`, `parallax-scrolling.tsx`, `product-rail-gallery.tsx`)
 - `src/lib/api.js`: единый интерфейс данных → `localApi` (демо) или `supabaseApi`
 - `supabase/schema.sql`: таблицы, RLS, функции `place_order` (атомарное списание остатков) и `track_order`

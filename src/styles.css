@@ -1,4 +1,16 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+/* Токены в стиле shadcn — для компонентов из 21st.dev (bg-background, text-foreground, …) */
+@theme {
+  --color-background: #101010;
+  --color-foreground: #ececec;
+  --color-muted-foreground: #8d8b86;
+  --color-card: #ece9e1;
+  --color-card-foreground: #101010;
+  --color-border: #2b2b2a;
+  --color-ring: #c8ff00;
+}
 
 /* =========================================================
    only.vision — тёмная зернистая стена, тяжёлый узкий шрифт
@@ -208,9 +220,9 @@ input, select, textarea { font: inherit; color: inherit; }
 .marquee-outline i { -webkit-text-stroke: 0; }
 
 /* ---------- Сетка товаров / карточка ---------- */
-.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 24px); }
-@media (max-width: 1100px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 760px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } }
+.product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 24px); }
+@media (max-width: 1100px) { .product-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; } }
 
 .card { position: relative; }
 .card-link { display: block; }
@@ -537,3 +549,9 @@ input, select, textarea { font: inherit; color: inherit; }
 
 .photo-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
 .photo-row label.btn { cursor: pointer; }
+
+/* Вешалка */
+.rail-section { padding: clamp(40px, 6vw, 80px) 0 0; }
+.rail-section .section-head { margin-bottom: 0; flex-wrap: wrap; padding: 0 var(--gutter); }
+.rail-section [data-slot="clothing-rail-hero"] p { font-family: var(--body); }
+body > [role="dialog"][aria-modal="true"] h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: clamp(32px, 4vw, 48px); }
