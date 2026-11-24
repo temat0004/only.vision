@@ -109,6 +109,33 @@ const EMPTY = {
   image_url: '', is_new: true, active: true, variants: [{ size: 'S', stock: 0 }, { size: 'M', stock: 0 }, { size: 'L', stock: 0 }, { size: 'XL', stock: 0 }],
 }
 
+function PhotoField({ value, onChange }) {
+  const [busy, setBusy] = useState(false)
+  const [err, setErr] = useState('')
+  const pick = async (e) => {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file) return
+    setBusy(true); setErr('')
+    try { onChange(await api.uploadImage(file)) } catch (ex) { setErr(ex.message) }
+    setBusy(false)
+  }
+  return (
+    <div className="field photo-field">
+      <span>Фото товара</span>
+      <div className="photo-row">
+        <label className={`btn btn-sm ${value ? 'btn-ghost' : 'btn-light'}`}>
+          {busy ? <Spinner /> : value ? 'Заменить фото' : 'Загрузить фото'}
+          <input type="file" accept="image/*" onChange={pick} hidden disabled={busy} />
+        </label>
+        {value && <button type="button" className="link-btn" onClick={() => onChange('')}>Убрать фото</button>}
+        {!value && <span className="muted small">Без фото показывается нарисованный силуэт</span>}
+      </div>
+      {err && <p className="error">{err}</p>}
+    </div>
+  )
+}
+
 function ProductForm({ initial, onClose, onSaved }) {
   const [p, setP] = useState(() => ({ ...EMPTY, ...initial, variants: sortVariants(initial?.variants ?? EMPTY.variants).map((v) => ({ ...v })) }))
   const [err, setErr] = useState('')
@@ -177,7 +204,7 @@ function ProductForm({ initial, onClose, onSaved }) {
               <label className="field"><span>Цвет вещи</span><input type="color" value={p.color} onChange={set('color')} /></label>
               <label className="field"><span>Фон</span><input type="color" value={p.bg} onChange={set('bg')} /></label>
             </div>
-            <label className="field"><span>Фото (ссылка, необязательно)</span><input value={p.image_url || ''} onChange={set('image_url')} placeholder="https://…" /></label>
+            <PhotoField value={p.image_url} onChange={(url) => setP((x) => ({ ...x, image_url: url }))} />
             <div className="field-row checks">
               <label className="toggle"><input type="checkbox" checked={p.is_new} onChange={set('is_new')} /><span>Новинка</span></label>
               <label className="toggle"><input type="checkbox" checked={p.active} onChange={set('active')} /><span>Показывать на сайте</span></label>

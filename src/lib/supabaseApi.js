@@ -1,6 +1,7 @@
 // Реальная база: Supabase (Postgres). Включается, когда заданы VITE_SUPABASE_URL и VITE_SUPABASE_ANON_KEY.
 import { createClient } from '@supabase/supabase-js'
 import { normalizePhone } from './config'
+import { resizeImage } from './image'
 
 const url = import.meta.env.VITE_SUPABASE_URL
 const key = import.meta.env.VITE_SUPABASE_ANON_KEY
@@ -100,6 +101,14 @@ export const supabaseApi = {
       else check(await sb.from('product_variants').insert(r))
     }
     return { ...product, id }
+  },
+
+  // Фото товара → Supabase Storage (bucket «products», публичное чтение, загрузка только админу)
+  async uploadImage(file) {
+    const blob = await resizeImage(file)
+    const path = `${crypto.randomUUID()}.webp`
+    check(await sb.storage.from('products').upload(path, blob, { contentType: 'image/webp', cacheControl: '31536000' }))
+    return sb.storage.from('products').getPublicUrl(path).data.publicUrl
   },
 
   async listWaitlist() {

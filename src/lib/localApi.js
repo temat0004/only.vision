@@ -2,6 +2,7 @@
 // Интерфейс тот же, что у supabaseApi, поэтому переключение — это только переменные окружения.
 import { SEED_PRODUCTS } from '../data/seed'
 import { DELIVERY, calcTotals, normalizePhone } from './config'
+import { resizeImage, blobToDataUrl } from './image'
 
 const KEY = 'ov_db_v2'
 const ADMIN_KEY = 'ov_admin'
@@ -151,6 +152,12 @@ export const localApi = {
     }
     save(db)
     return data
+  },
+
+  // В демо-режиме фото хранится прямо в localStorage, поэтому сжимаем сильнее
+  async uploadImage(file) {
+    requireAdmin()
+    return blobToDataUrl(await resizeImage(file, 700, 0.75))
   },
 
   async listWaitlist() {
