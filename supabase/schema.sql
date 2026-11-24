@@ -102,6 +102,14 @@ create policy "anyone joins waitlist" on waitlist for insert to anon, authentica
 drop policy if exists "admin waitlist" on waitlist;
 create policy "admin waitlist" on waitlist for all to authenticated using (true) with check (true);
 
+-- Права ролей. В новых проектах Supabase таблицы, созданные через SQL, не открыты для API
+-- автоматически — без этих GRANT сайт получает «permission denied». RLS выше ограничивает строки.
+grant usage on schema public to anon, authenticated;
+grant select on public.products, public.product_variants to anon;
+grant insert on public.waitlist to anon;
+grant select, insert, update, delete on public.products, public.product_variants, public.orders, public.order_items, public.waitlist to authenticated;
+grant usage, select on sequence public.order_number_seq to authenticated;
+
 -- ---------- СЛОЖНОЕ МЕСТО: оформление заказа ----------
 -- 1. Блокируем строки нужных размеров (FOR UPDATE). Второй покупатель, который
 --    в ту же секунду берёт тот же размер, ждёт, пока закончится первая транзакция.
