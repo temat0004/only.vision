@@ -1,6 +1,8 @@
 # only.vision
 
 Интернет-магазин одежды в Бишкеке: лендинг, каталог, корзина с учётом остатков, оформление заказа, отслеживание и админка.
+**Сайт:** https://only-vision-ten.vercel.app · **Админка:** https://only-vision-ten.vercel.app/admin
+
 Бриф, этапы и журнал ошибок — в [BRIEF.md](BRIEF.md).
 
 **Стек:** React 19 + Vite, Tailwind CSS 4, Motion, GSAP + Lenis, Supabase (Postgres).
