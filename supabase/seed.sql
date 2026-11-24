@@ -27,7 +27,7 @@ select p.id, v.size, v.stock from p, (values ('S', 2), ('M', 4), ('L', 3), ('XL'
 
 with p as (
   insert into products (name, category, price, description, details, art, color, bg, image_url, is_new, active, created_at)
-  values ('NIKE TECH FLEECE JOGGERS', 'pants', 3200, 'Джоггеры в комплект к худи: зауженный низ, карман на молнии сбоку, мягкий пояс.', 'Хлопок с полиэстером. Стирка при 30°.', 'joggers', '#b8b8b5', '#c8ff00', null, false, true, now() - interval '4 hours')
+  values ('NIKE TECH FLEECE JOGGERS', 'pants', 3200, 'Джоггеры в комплект к худи: зауженный низ, карман на молнии сбоку, мягкий пояс.', 'Хлопок с полиэстером. Стирка при 30°.', 'joggers', '#b8b8b5', '#2f5bff', null, false, true, now() - interval '4 hours')
   returning id
 )
 insert into product_variants (product_id, size, stock)

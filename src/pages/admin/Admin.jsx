@@ -19,7 +19,7 @@ function Login({ onDone }) {
   return (
     <div className="admin-login">
       <motion.form onSubmit={submit} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ ease }}>
-        <EyeMark size={44} color="#c8ff00" />
+        <EyeMark size={44} color="#ececec" />
         <h1 className="h2">Админка</h1>
         <p className="muted">only.vision · вход для персонала</p>
         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Пароль" autoFocus aria-label="Пароль" />
@@ -324,7 +324,7 @@ export default function Admin() {
   return (
     <div className="admin">
       <header className="admin-head">
-        <Link to="/" className="logo"><EyeMark size={24} color="#c8ff00" /><span>only.vision</span><em>admin</em></Link>
+        <Link to="/" className="logo"><EyeMark size={24} color="#ececec" /><span>only.vision</span><em>admin</em></Link>
         <div className="admin-head-actions">
           <span className="mode-pill" title="Источник данных">{api.mode === 'supabase' ? '● Supabase' : '○ демо-база'}</span>
           <button className="btn btn-sm btn-ghost" onClick={reload} disabled={loading}>{loading ? <Spinner /> : 'Обновить'}</button>

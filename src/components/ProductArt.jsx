@@ -111,7 +111,7 @@ export const ART_TYPES = [
 ]
 
 export default function ProductArt({ product, className = '' }) {
-  const { art = 'tee', color = '#151515', bg = '#c8ff00', name = '', image_url } = product
+  const { art = 'tee', color = '#151515', bg = '#2a2a2a', name = '', image_url } = product
   if (image_url) {
     return (
       <div className={`art ${className}`} style={{ background: bg }}>

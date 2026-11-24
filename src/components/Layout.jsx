@@ -30,7 +30,7 @@ export function Header() {
         transition={{ duration: 0.35, ease }}
       >
         <Link to="/" className="logo" aria-label="only.vision — на главную">
-          <EyeMark size={26} color="#c8ff00" />
+          <EyeMark size={26} color="#ececec" />
           <span>only.vision</span>
         </Link>
         <nav className="nav">

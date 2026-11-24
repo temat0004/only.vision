@@ -27,7 +27,7 @@ export const SEED_PRODUCTS = [
     is_new: true, active: true, created_at: at(3), variants: v('p03', { S: 2, M: 4, L: 3, XL: 1 }),
   },
   {
-    id: 'p04', name: 'NIKE TECH FLEECE JOGGERS', category: 'pants', price: 3200, art: 'joggers', color: '#b8b8b5', bg: '#c8ff00',
+    id: 'p04', name: 'NIKE TECH FLEECE JOGGERS', category: 'pants', price: 3200, art: 'joggers', color: '#b8b8b5', bg: '#2f5bff',
     description: 'Джоггеры в комплект к худи: зауженный низ, карман на молнии сбоку, мягкий пояс.',
     details: 'Хлопок с полиэстером. Стирка при 30°.',
     is_new: false, active: true, created_at: at(4), variants: v('p04', { S: 1, M: 3, L: 2, XL: 0 }),

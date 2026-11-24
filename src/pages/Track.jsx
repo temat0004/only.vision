@@ -36,9 +36,9 @@ export function OrderDone() {
     <Page className="done">
       <div className="center">
         <motion.svg viewBox="0 0 100 100" width="120" height="120" initial="h" animate="v">
-          <motion.circle cx="50" cy="50" r="44" fill="none" stroke="#c8ff00" strokeWidth="6"
+          <motion.circle cx="50" cy="50" r="44" fill="none" stroke="#ececec" strokeWidth="6"
             variants={{ h: { pathLength: 0 }, v: { pathLength: 1, transition: { duration: 0.8, ease } } }} />
-          <motion.path d="M30 52 L45 66 L72 36" fill="none" stroke="#c8ff00" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round"
+          <motion.path d="M30 52 L45 66 L72 36" fill="none" stroke="#ececec" strokeWidth="7" strokeLinecap="round" strokeLinejoin="round"
             variants={{ h: { pathLength: 0 }, v: { pathLength: 1, transition: { duration: 0.5, delay: 0.7, ease } } }} />
         </motion.svg>
         <h1 className="h1">Заказ №{number} принят</h1>
